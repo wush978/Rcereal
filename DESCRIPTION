@@ -3,7 +3,7 @@ Type: Package
 Title: C++ header files of cereal
 Version: 1.1.2
 Date: 2015-10-29
-Author: Wush Wu and the developers of cereal
+Author: Wush Wu, Randolph Voorhies, and Shane Grant
 Maintainer: Wush Wu <wush978@gmail.com>
 Description: cereal is a header-only C++11 serialization library.
   cereal takes arbitrary data types and reversibly turns them into
