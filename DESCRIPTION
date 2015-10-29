@@ -1,6 +1,6 @@
 Package: Rcereal
 Type: Package
-Title: C++ header files of cereal
+Title: C++ Header Files of Cereal
 Version: 1.1.2
 Date: 2015-10-29
 Author: Wush Wu, Randolph Voorhies, and Shane Grant
@@ -11,6 +11,6 @@ Description: cereal is a header-only C++11 serialization library.
   or JSON. cereal was designed to be fast, light-weight, and easy
   to extend - it has no external dependencies and can be easily
   bundled with other code or used standalone.
-License: BSD_3_clause
+License: BSD_3_clause + file LICENSE
 LazyData: TRUE
 SystemRequirements: C++11
