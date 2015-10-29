@@ -1,0 +1,3 @@
+[submodule "inst"]
+	path = inst
+	url = https://github.com/USCiLab/cereal.git

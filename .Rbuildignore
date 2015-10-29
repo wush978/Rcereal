@@ -1,0 +1,13 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+.git
+.gitignore
+inst/.git
+inst/CMakeLists.txt
+inst/doc
+inst/LICENSE
+inst/README.md
+inst/sandbox
+inst/scripts
+inst/unittests
+inst/vs2013
