@@ -51,7 +51,8 @@ update_version <- function(version = last_version()) {
   stopifnot(file.rename(.dst <- .package_file("include"), .include <- file.path(.package_file(""), ".include")))
   tryCatch({
     .src <- file.path(.tmppath, "include")
-    file.copy(.src, .dst)
+    file.copy(.src, .package_file(""), overwrite = TRUE, recursive = TRUE)
+    stopifnot(dir(.dst) == "cereal")
     unlink(.include, recursive = TRUE)
   }, error = function(e) {
     file.rename(.include, .dst)
