@@ -1,7 +1,4 @@
 language: r
 sudo: required
 
-apt_packages:
-  - git
-
 warnings_are_errors: true
