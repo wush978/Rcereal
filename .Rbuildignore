@@ -12,3 +12,4 @@ inst/scripts
 inst/unittests
 inst/vs2013
 inst/.travis.yml
+.travis.yml

@@ -1,5 +1,9 @@
 context("Test the ability to switch the version of cereal")
 
+test.repo_path <- tempfile()
+dir.create(test.repo_path)
+test.repo <- git2r::clone("https://github.com/USCiLab/cereal.git", test.repo_path)
+
 compare_dir <- function(d1, d2) {
   f1 <- sort(dir(d1, recursive = TRUE))
   f2 <- sort(dir(d2, recursive = TRUE))
