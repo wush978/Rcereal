@@ -17,12 +17,8 @@ compare_dir <- function(d1, d2) {
 }
 
 test_that("Switch to the latest version", {
-  versions <- list_version()
-  update_version()
-  git2r::checkout(tail(git2r::tags(test.repo), 1)[[1]])
-  expect_true(compare_dir(system.file("include", package = "Rcereal"), file.path(test.repo_path, "include")))
-  version <- sample(versions, 1)
-  update_version(version)
-  git2r::checkout(git2r::tags(test.repo)[[sprintf("v%s", version)]])
+  versions <- package_version("1.1.1")
+  update_version(versions)
+  git2r::checkout(git2r::tags(test.repo)[[sprintf("v%s", versions)]])
   expect_true(compare_dir(system.file("include", package = "Rcereal"), file.path(test.repo_path, "include")))
 })
