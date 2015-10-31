@@ -7,6 +7,15 @@ For more information, please visit the official website of the cereal project: <
 
 This package can be used via the `LinkingTo:` field in the DESCRIPTION field of an R package and the `Rcpp::depends` in the Rcpp-attributes. The R and Rcpp infrastructure tools will know how to set include flags properly.
 
+## Installation
+
+Please use the `devtools::install_github` to install the latest version of Rceral and use `Rcereal::update_version` to install the content of the header files of cereal.
+
+```r
+devtools::install_github("wush978/Rcereal")
+Rcereal::upate_version()
+```
+
 ## Status
 
 OS     |  Status
