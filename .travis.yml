@@ -11,4 +11,6 @@ before_install:
 warnings_are_errors: true
 
 env:
-  - RCEREAL_TEST_GITHUB=TRUE RCEREAL_TEST_UPDATE=TRUE
+  global:
+    - RCEREAL_TEST_GITHUB=TRUE
+    - RCEREAL_TEST_UPDATE=TRUE
