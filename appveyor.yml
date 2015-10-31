@@ -40,3 +40,7 @@ artifacts:
 
   - path: '\*_*.zip'
     name: Bits
+
+environment:
+  RCEREAL_TEST_GITHUB: TRUE
+  RCEREAL_TEST_UPDATE: TRUE
