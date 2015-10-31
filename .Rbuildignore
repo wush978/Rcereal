@@ -14,3 +14,4 @@ inst/vs2013
 inst/.travis.yml
 .travis.yml
 appveyor.yml
+src/.gitexist
