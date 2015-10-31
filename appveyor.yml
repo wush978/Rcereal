@@ -44,4 +44,3 @@ artifacts:
 environment:
   RCEREAL_TEST_GITHUB: TRUE
   RCEREAL_TEST_UPDATE: TRUE
-  GCC_PATH: mingw_64
