@@ -14,4 +14,4 @@ Description: cereal is a header-only C++11 serialization library.
 License: BSD_3_clause + file LICENSE
 LazyData: TRUE
 SystemRequirements: C++11
-Suggests: git2r, httr, testthat, tools
+Suggests: Rcpp, git2r, httr, testthat, tools, devtools
