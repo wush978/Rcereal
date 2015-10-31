@@ -48,7 +48,7 @@ update_version <- function(version = last_version()) {
   .repo <- git2r::repository(.tmppath)
   .commit <- git2r::tags(.repo)[[sprintf("v%s", version)]]
   git2r::checkout(.commit)
-  .dst <- .package_file("include")
+  .dst <- file.path(.package_file(""), "include")
   if (!file.exists(.dst)) dir.create(.dst)
   stopifnot(file.rename(.dst, .include <- file.path(.package_file(""), ".include")))
   tryCatch({
