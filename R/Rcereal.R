@@ -1,6 +1,6 @@
 #'@title List the version of cereal on github.
 #'@return package_version. The vector of versions of cereal.
-#'@details Use the github API to query the versions of cereal. 
+#'@details Use the github API to query the versions of cereal.
 #'  The github page of cereal is \url{https://github.com/USCiLab/cereal}
 #'  This function requires the package \code{httr}.
 #'@export
@@ -48,7 +48,9 @@ update_version <- function(version = last_version()) {
   .repo <- git2r::repository(.tmppath)
   .commit <- git2r::tags(.repo)[[sprintf("v%s", version)]]
   git2r::checkout(.commit)
-  stopifnot(file.rename(.dst <- .package_file("include"), .include <- file.path(.package_file(""), ".include")))
+  .dst <- .package_file("include")
+  if (!file.exists(.dst)) dir.create(.dst)
+  stopifnot(file.rename(.dst, .include <- file.path(.package_file(""), ".include")))
   tryCatch({
     .src <- file.path(.tmppath, "include")
     file.copy(.src, .package_file(""), overwrite = TRUE, recursive = TRUE)
