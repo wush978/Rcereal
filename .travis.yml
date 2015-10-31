@@ -29,3 +29,5 @@ env:
     - R_BUILD_ARGS="--no-manual"
     - R_CHECK_ARGS="--no-manual --as-cran --no-vignettes"
     - PKG_CFLAGS="-g -O3 -Wall -pedantic -I../inst/include -DLOGGER_LEVEL=LL_WARN"
+    - RCEREAL_TEST_GITHUB=TRUE
+    - RCEREAL_TEST_UPDATE=TRUE

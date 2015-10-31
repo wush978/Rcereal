@@ -5,9 +5,10 @@ test_that("my_class", {
   .cxxflags <- Sys.getenv("PKG_CXXFLAGS")
   .r_tests <- Sys.getenv("R_TESTS")
   Sys.setenv(
-    "PKG_CXXFLAGS" = paste(.cxxflags, "-std=c++0x", sep = " "),
+    "PKG_CXXFLAGS" = paste(.cxxflags, "-std=c++11", sep = " "),
     "R_TESTS" = "")
   tryCatch({
+    print(Sys.getenv("PATH"))
     Rcpp::sourceCpp("cpp/test_my_class.cpp", verbose = TRUE)
     x <- sample(1:1000, 3)
     .raw <- serialize_myclass(x[1], x[2], x[3])
