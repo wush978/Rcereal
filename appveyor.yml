@@ -22,6 +22,9 @@ test_script:
 on_failure:
   - travis-tool.sh dump_logs
 
+on_success:
+  - travis-tool.sh dump_logs
+
 artifacts:
   - path: '*.Rcheck\**\*.log'
     name: Logs
