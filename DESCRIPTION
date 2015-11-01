@@ -1,6 +1,6 @@
 Package: Rcereal
 Type: Package
-Title: C++ Header Files of Cereal
+Title: C++ Header Files of cereal
 Version: 1.1.2
 Date: 2015-10-29
 Author: Wush Wu, Randolph Voorhies, and Shane Grant
