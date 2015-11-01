@@ -8,6 +8,9 @@ before_install:
   - mkdir ~/.R
   - echo -e "CC=gcc-4.9 -std=gnu99\nCXX=g++-4.9 -std=c++11\nnCXX1X=g++-4.9\nCXXFLAGS=-g -O3\nCXX1XFLAGS=-g -O3\nCFLAGS=-g -O3\n" > ~/.R/Makevars
 
+after_success:
+  - ./travis-tool.sh dump_logs
+
 warnings_are_errors: true
 
 env:
