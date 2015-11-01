@@ -9,10 +9,6 @@ This package can be used via the `LinkingTo:` field in the DESCRIPTION field of 
 
 ## Installation
 
-### From CRAN
-
-The package has not been submitted to CRAN yet.
-
 ### From Github
 
 Please use the `devtools::install_github` to install the latest version of Rceral and use `Rcereal::update_version` to install the content of the header files of cereal.
