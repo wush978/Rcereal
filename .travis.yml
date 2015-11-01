@@ -17,6 +17,9 @@ install:
   - ./travis-tool.sh install_deps
   # Install testthat after running install_deps, otherwise devtools itself might be installed from CRAN or c2d4u
 
+after_success:
+  - ./travis-tool.sh dump_logs
+
 notifications:
   email:
     on_success: change
@@ -31,3 +34,4 @@ env:
     - PKG_CFLAGS="-g -O3 -Wall -pedantic -I../inst/include -DLOGGER_LEVEL=LL_WARN"
     - RCEREAL_TEST_GITHUB=TRUE
     - RCEREAL_TEST_UPDATE=TRUE
+    - RCEREAL_TEST_MYCLASS=TRUE
