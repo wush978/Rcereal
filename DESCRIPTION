@@ -1,17 +1,18 @@
 Package: Rcereal
 Type: Package
-Title: C++ Header Files of cereal
+Title: C++ Header Files of 'cereal'
 Version: 1.1.2
 Date: 2015-10-29
 Author: Wush Wu, Randolph Voorhies, and Shane Grant
 Maintainer: Wush Wu <wush978@gmail.com>
-Description: cereal is a header-only C++11 serialization library.
-  cereal takes arbitrary data types and reversibly turns them into
+Description: To facilitate using 'cereal' with Rcpp.
+  'cereal' is a header-only C++11 serialization library.
+  'cereal' takes arbitrary data types and reversibly turns them into
   different representations, such as compact binary encodings, XML,
-  or JSON. cereal was designed to be fast, light-weight, and easy
+  or JSON. 'cereal' was designed to be fast, light-weight, and easy
   to extend - it has no external dependencies and can be easily
   bundled with other code or used standalone.
-License: BSD_3_clause + file LICENSE
+License: BSD_2_clause + file LICENSE
 LazyData: TRUE
 SystemRequirements: C++11
 Suggests: Rcpp, git2r, httr, testthat, tools, devtools
