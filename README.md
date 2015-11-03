@@ -11,7 +11,7 @@ This package can be used via the `LinkingTo:` field in the DESCRIPTION field of 
 
 ### From Github
 
-Please use the `devtools::install_github` to install the latest version of Rceral and use `Rcereal::update_version` to install the content of the header files of cereal.
+Please use the `devtools::install_github` to install the latest version of Rcereal and use `Rcereal::update_version` to install the content of the header files of cereal.
 
 ```r
 devtools::install_github("wush978/Rcereal")
@@ -95,7 +95,7 @@ To use cereal with Rcpp in the following way, the user must remember two points:
 - The supports of c++11 must be enabled.
 - The Rcereal must be install properly.
 
-If you see the compiler reports the missing header files, please use the `Rcereal::update_version()` to update the content of cereal from github. You can manual check whether a directory named `sereal` is in the folder `system.file("include", package = "Rcereal")`.
+If you see the compiler reports the missing header files, please use the `Rcereal::update_version()` to update the content of cereal from github. You can manual check whether a directory named `cereal` is in the folder `system.file("include", package = "Rcereal")`.
 
 If you see lots of error during compiling, please check the version of the compiler and the content of the environment variable `PKG_CXXFLAGS`. As far as I know, cereal will fail if the gcc-4.6 is used.
 
