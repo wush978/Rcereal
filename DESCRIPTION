@@ -16,3 +16,5 @@ License: BSD_2_clause + file LICENSE
 LazyData: TRUE
 SystemRequirements: C++11
 Suggests: Rcpp, git2r, httr, testthat, tools, devtools
+URL: https://github.com/wush978/Rcereal
+BugReports: https://github.com/wush978/Rcereal/issues
