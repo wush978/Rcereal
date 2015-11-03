@@ -1,4 +1,4 @@
-# Rceral - cereal, A c++11 library for serialization, for R
+# Rcereal - cereal, A c++11 library for serialization, for R
 
 This package provides R with access to cereal header files. 
 cereal is a header-only C++11 serialization library.
