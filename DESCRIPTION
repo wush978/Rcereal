@@ -1,7 +1,7 @@
 Package: Rcereal
 Type: Package
 Title: C++ Header Files of 'cereal'
-Version: 1.1.2
+Version: 1.2.1
 Date: 2015-10-29
 Author: Wush Wu, Randolph Voorhies, and Shane Grant
 Maintainer: Wush Wu <wush978@gmail.com>
