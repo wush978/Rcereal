@@ -1,3 +1,4 @@
+//[[Rcpp::plugins("cpp11")]]
 //[[Rcpp::depends(Rcereal)]]
 
 #include <sstream>
