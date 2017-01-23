@@ -4,10 +4,16 @@ matrix:
   include:
     - r: oldrel
       os: linux
+      dist: trusty
+      sudo: false
     - r: release
       os: linux
+      dist: trusty
+      sudo: false
     - r: devel
       os: linux
+      dist: trusty
+      sudo: false
     - r: release
       os: osx
 
