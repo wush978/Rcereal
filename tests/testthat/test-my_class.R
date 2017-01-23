@@ -2,6 +2,7 @@ if ((Sys.getenv("RCEREAL_TEST_MYCLASS") == "TRUE")) {
   context("Test cereal and Rcpp attributes")
 
   test_that("my_class", {
+    update_version(package_version("1.2.1"))
     .cxxflags <- Sys.getenv("PKG_CXXFLAGS")
     .r_tests <- Sys.getenv("R_TESTS")
     Sys.setenv(

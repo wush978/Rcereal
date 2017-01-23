@@ -19,7 +19,21 @@ if (Sys.getenv("RCEREAL_TEST_UPDATE") == "TRUE") {
   }
 
   test_that("Switch to the latest version", {
-    versions <- package_version("1.1.1")
+    versions <- package_version("1.2.1")
+    update_version(versions)
+    git2r::checkout(git2r::tags(test.repo)[[sprintf("v%s", versions)]])
+    expect_true(compare_dir(system.file("include", package = "Rcereal"), file.path(test.repo_path, "include")))
+  })
+
+  test_that("Switch to the version 1.2.0", {
+    versions <- package_version("1.2.0")
+    update_version(versions)
+    git2r::checkout(git2r::tags(test.repo)[[sprintf("v%s", versions)]])
+    expect_true(compare_dir(system.file("include", package = "Rcereal"), file.path(test.repo_path, "include")))
+  })
+
+  test_that("Switch to the version 1.1.2", {
+    versions <- package_version("1.1.2")
     update_version(versions)
     git2r::checkout(git2r::tags(test.repo)[[sprintf("v%s", versions)]])
     expect_true(compare_dir(system.file("include", package = "Rcereal"), file.path(test.repo_path, "include")))
