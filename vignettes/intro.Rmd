@@ -4,9 +4,10 @@ output:
   rmarkdown::html_vignette:
     number_sections: yes
     toc: yes
+    keep_md: yes
 author: Wush Wu
 vignette: >
-  %\VignetteIndexEntry{intro}
+  %\VignetteIndexEntry{Introduction of Rcereal}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

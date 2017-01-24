@@ -6,17 +6,26 @@ Date: 2017-01-24
 Author: Wush Wu, Randolph Voorhies, and Shane Grant
 Maintainer: Wush Wu <wush978@gmail.com>
 Description: To facilitate using 'cereal' with Rcpp.
-  'cereal' is a header-only C++11 serialization library.
-  'cereal' takes arbitrary data types and reversibly turns them into
-  different representations, such as compact binary encodings, XML,
-  or JSON. 'cereal' was designed to be fast, light-weight, and easy
-  to extend - it has no external dependencies and can be easily
-  bundled with other code or used standalone.
+    'cereal' is a header-only C++11 serialization library.
+    'cereal' takes arbitrary data types and reversibly turns them into
+    different representations, such as compact binary encodings, XML,
+    or JSON. 'cereal' was designed to be fast, light-weight, and easy
+    to extend - it has no external dependencies and can be easily
+    bundled with other code or used standalone.
 License: BSD_2_clause + file LICENSE
 LazyData: TRUE
 SystemRequirements: C++11
-Suggests: Rcpp(>= 0.10.3), git2r, httr, testthat, tools, devtools, knitr, rmarkdown
+Suggests:
+    Rcpp(>= 0.10.3),
+    git2r,
+    httr,
+    testthat,
+    tools,
+    devtools,
+    knitr,
+    rmarkdown
 URL: https://github.com/wush978/Rcereal
 BugReports: https://github.com/wush978/Rcereal/issues
 VignetteBuilder: knitr
 Encoding: UTF-8
+RoxygenNote: 5.0.1
