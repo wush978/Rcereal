@@ -1,8 +1,8 @@
 Package: Rcereal
 Type: Package
-Title: C++ Header Files of 'cereal'
+Title: Header Files of C++11 Serialization Library: cereal
 Version: 1.2.1
-Date: 2015-10-29
+Date: 2017-01-24
 Author: Wush Wu, Randolph Voorhies, and Shane Grant
 Maintainer: Wush Wu <wush978@gmail.com>
 Description: To facilitate using 'cereal' with Rcpp.
@@ -15,6 +15,8 @@ Description: To facilitate using 'cereal' with Rcpp.
 License: BSD_2_clause + file LICENSE
 LazyData: TRUE
 SystemRequirements: C++11
-Suggests: Rcpp(>= 0.10.3), git2r, httr, testthat, tools, devtools
+Suggests: Rcpp(>= 0.10.3), git2r, httr, testthat, tools, devtools, knitr, rmarkdown
 URL: https://github.com/wush978/Rcereal
 BugReports: https://github.com/wush978/Rcereal/issues
+VignetteBuilder: knitr
+Encoding: UTF-8
