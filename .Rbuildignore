@@ -4,7 +4,10 @@
 .gitignore
 inst/.git
 inst/CMakeLists.txt
-inst/doc
+inst/doc/doxygen.in
+inst/doc/DoxygenLayout.xml
+inst/doc/footer.html
+inst/doc/mainpage.dox
 inst/LICENSE
 inst/README.md
 inst/sandbox
