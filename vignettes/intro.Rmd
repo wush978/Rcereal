@@ -1,10 +1,6 @@
 ---
 title: "Rcereal - cereal, A c++11 library for serialization, for R"
-output: 
-  rmarkdown::html_vignette:
-    number_sections: yes
-    toc: yes
-    keep_md: yes
+output: rmarkdown::html_vignette
 author: Wush Wu
 vignette: >
   %\VignetteIndexEntry{Introduction of Rcereal}
