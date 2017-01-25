@@ -1,6 +1,6 @@
 Package: Rcereal
 Type: Package
-Title: Header Files of C++11 Serialization Library: cereal
+Title: C++11 Header Files for 'cereal'
 Version: 1.2.1
 Date: 2017-01-24
 Author: Wush Wu, Randolph Voorhies, and Shane Grant
@@ -11,7 +11,8 @@ Description: To facilitate using 'cereal' with Rcpp.
     different representations, such as compact binary encodings, XML,
     or JSON. 'cereal' was designed to be fast, light-weight, and easy
     to extend - it has no external dependencies and can be easily
-    bundled with other code or used standalone.
+    bundled with other code or used standalone. Please see
+    <http://uscilab.github.io/cereal> for more information.
 License: BSD_2_clause + file LICENSE
 LazyData: TRUE
 SystemRequirements: C++11
