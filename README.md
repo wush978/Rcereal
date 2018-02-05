@@ -15,7 +15,7 @@ Please use the `devtools::install_github` to install the latest version of Rcere
 
 ```r
 devtools::install_github("wush978/Rcereal")
-Rcereal::upate_version()
+Rcereal::update_version()
 ```
 
 ## Getting Started
