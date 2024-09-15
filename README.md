@@ -1,107 +1,206 @@
-# Rcereal - cereal, A c++11 library for serialization, for R
+# Rcereal: cereal headers for R and C++ serialization
 
-This package provides R with access to cereal header files. 
-cereal is a header-only C++11 serialization library.
-cereal takes arbitrary data types and reversibly turns them into different representations, such as compact binary encodings, XML, or JSON. 
-For more information, please visit the official website of cereal project: <http://uscilab.github.io/cereal/>
+This package provides R with access to [__cereal__][cereal_gh] header files.
+__cereal__ is a header-only C++11 serialization library. __cereal__ takes
+arbitrary data types and reversibly turns them into different representations,
+such as compact binary encodings, XML, or JSON.
 
-This package can be used via the `LinkingTo:` field in the DESCRIPTION field of an R package and the `Rcpp::depends` in the Rcpp-attributes. The R and Rcpp infrastructure tools will know how to set include flags properly.
+For more information, please visit the official website of the __cereal__
+project: <https://uscilab.github.io/cereal/>.
+
+[cereal_gh]: https://uscilab.github.io/cereal/
+
+The headers in this package can be used via:
+
+-   the `LinkingTo:` field in the DESCRIPTION of an R package;
+-   the `[[cpp11::linking_to("Rcereal")]]` attribute and `cpp11::source` from
+    the [cpp11][cpp11_url] package, or;
+-   the `[[Rcpp::depends(Rcereal)]]` [Rcpp attribute][rcpp_attributes_vignette].
+
+[cpp11_url]: https://cpp11.r-lib.org
+[rcpp_attributes_vignette]: https://cran.r-project.org/package=Rcpp/vignettes/Rcpp-attributes.pdf
+
 
 ## Installation
 
-### From Github
+### Latest release
 
-Please use the `devtools::install_github` to install the latest version of Rcereal and use `Rcereal::update_version` to install the content of the header files of cereal.
+The latest release can be installed from [CRAN][rcereal_cran] via:
 
 ```r
-devtools::install_github("wush978/Rcereal")
-Rcereal::update_version()
+install.packages('Rcereal')
 ```
 
-## Getting Started
+[rcereal_cran]: https://CRAN.R-project.org/package=Rcereal
 
-In this project, we will not explain how to use cereal in c++ because the official cereal project has already provides a complete documentation. Please visit the [Quick Start](http://uscilab.github.io/cereal/quickstart.html) page to learn how to use cereal.
 
-The following example briefly shows how to use the Rcereal in Rcpp-attributes to serialize a user defined c++ structure into raw vector and deserialize from the raw vector.
+### Development version
+
+Use `remotes::install_github` to install the latest version of __Rcereal__.
+Optionally: use `Rcereal::update_version` to over-write the header files in the
+R library with a version from <https://github.com/USCiLab/cereal>.
+
+```r
+remotes::install_github("wush978/Rcereal")
+Rcereal::update_version() # optional
+```
+
+
+## Usage
+
+See the official __cereal__ [Quick Start][cereal_quick_start_doc] guide for
+further details about using __cereal__ in C++11.
+
+[cereal_quick_start_doc]: https://uscilab.github.io/cereal/quickstart.html
+
+
+### Using cpp11
+
+The following example shows how to use __Rcereal__ alongside [cpp11][cpp11_url]
+to serialize and deserialize a user-defined `struct` using raw vectors:
 
 ```cpp
-//[[Rcpp::depends(Rcereal)]]
-
+// path/to/example.cpp
 #include <sstream>
+
+#include <cpp11/raws.hpp>
+
 #include <cereal/archives/binary.hpp>
+
+[[cpp11::linking_to("Rcereal")]]
+struct MyClass
+{
+    int x, y, z;
+  // This method lets cereal know which data members to serialize
+    template<class Archive>
+    void serialize(Archive & archive)
+    {
+        archive( x, y, z ); // serialize things by passing them to the archive
+    }
+};
+
+[[cpp11::register]]
+cpp11::raws serialize_myclass(int x = 1, int y = 2, int z = 3) {
+    MyClass my_instance { x, y, z };
+    std::stringstream ss;
+    {
+        cereal::BinaryOutputArchive oarchive(ss); // Create an output archive
+        oarchive(my_instance);
+    }
+    ss.seekg(0, ss.end);
+    cpp11::writable::raws result(ss.tellg());
+    ss.seekg(0, ss.beg);
+    std::copy(std::istreambuf_iterator<char>{ss},
+              std::istreambuf_iterator<char>(),
+              result.begin());
+    return result;
+}
+
+[[cpp11::register]]
+void deserialize_myclass(cpp11::raws src) {
+    std::stringstream ss;
+    std::copy(src.cbegin(), src.cend(), std::ostream_iterator<char>(ss));
+    MyClass my_instance;
+    {
+        cereal::BinaryInputArchive iarchive(ss); // Read from input archive
+        iarchive(my_instance);
+    }
+    Rprintf("%i,%i,%i\n", my_instance.x, my_instance.y, my_instance.z);
+}
+```
+
+Then, provided C++11 is enabled by default (see [this tidyverse
+post 03/2023][tidyverse_post_03_2023]), in R:
+
+```r
+cpp11::cpp_source(file='path/to/example.cpp')
+raw_vector <- serialize_myclass(1, 2, 4)
+deserialize_myclass(raw_vector)
+```
+
+[tidyverse_post_03_2023]: https://www.tidyverse.org/blog/2023/03/cran-checks-compiled-code/
+
+
+### Using Rcpp
+
+The following example shows how to use __Rcereal__ alongside [Rcpp][rcpp_cran]
+to serialize and deserialize a user-defined `struct` using raw vectors:
+
+```cpp
+// path/to/example.cpp
+
+//[[Rcpp::depends(Rcereal)]]
+#include <sstream>
+
+#include <cereal/archives/binary.hpp>
+
 #include <Rcpp.h>
+using namespace Rcpp;
 
 struct MyClass
 {
-  int x, y, z;
-
-  // This method lets cereal know which data members to serialize
-  template<class Archive>
-  void serialize(Archive & archive)
-  {
-    archive( x, y, z ); // serialize things by passing them to the archive
-  }
+    /* same as cpp11 example above */
 };
 
-using namespace Rcpp;
 //[[Rcpp::export]]
-RawVector serialize_myclass(int x = 1, int y = 2, int z = 3) {
-  MyClass my_instance;
-  my_instance.x = x;
-  my_instance.y = y;
-  my_instance.z = z;
-  std::stringstream ss;
-  {
-    cereal::BinaryOutputArchive oarchive(ss); // Create an output archive
-    oarchive(my_instance);
-  }
-  ss.seekg(0, ss.end);
-  RawVector retval(ss.tellg());
-  ss.seekg(0, ss.beg);
-  ss.read(reinterpret_cast<char*>(&retval[0]), retval.size());
-  return retval;
+Rcpp::RawVector serialize_myclass(int x = 1, int y = 2, int z = 3) {
+    MyClass my_instance { x, y, z };
+    std::stringstream ss;
+    {
+        cereal::BinaryOutputArchive oarchive(ss); // Create an output archive
+        oarchive(my_instance);
+    }
+    ss.seekg(0, ss.end);
+    Rcpp::RawVector result(ss.tellg());
+    ss.seekg(0, ss.beg);
+    ss.read(reinterpret_cast<char*>(&result[0]), result.size());
+    return result;
 }
 
 //[[Rcpp::export]]
-void deserialize_myclass(RawVector src) {
-  std::stringstream ss;
-  ss.write(reinterpret_cast<char*>(&src[0]), src.size());
-  ss.seekg(0, ss.beg);
-  MyClass my_instance;
-  {
-    cereal::BinaryInputArchive iarchive(ss);
-    iarchive(my_instance);
-  }
-  Rcout << my_instance.x << "," << my_instance.y << "," << my_instance.z << std::endl;
+void deserialize_myclass(Rcpp::RawVector src) {
+    std::stringstream ss;
+    ss.write(reinterpret_cast<char*>(&src[0]), src.size());
+    ss.seekg(0, ss.beg);
+    MyClass my_instance;
+    {
+        cereal::BinaryInputArchive iarchive(ss);
+        iarchive(my_instance);
+    }
+    Rcpp::Rcout << my_instance.x << "," << my_instance.y << "," <<
+        my_instance.z << std::endl;
 }
-
-/*** R
-raw_vector <- serialize_myclass(1, 2, 4)
-deserialize_myclass(raw_vector)
-*/
 ```
 
-To compile the cpp file, the user must enable the support of c++11 before using `Rcpp::sourceCpp`. 
+Then in R, provided C++ is enabled by default:
 
 ```r
-Sys.setenv(PKG_CXXFLAGS="-std=c++11")
-Rcpp::sourceCpp("<the path to the cpp file>")
+Rcpp::sourceCpp("path/to/example.cpp")
+raw_vector <- serialize_myclass(1, 2, 4)
+deserialize_myclass(raw_vector)
 ```
+
 
 ## Troubleshooting
 
-To use cereal with Rcpp in the following way, the user must remember two points:
+C++11 may not be enabled by default for some compilers, if not; ensure that
+`PKG_CXXFLAGS` contains `-std=c++11`, e.g. if you use `pkgbuild::compile_dll()`
+to build a package (similarly for `devtools::build`):
 
-- The supports of c++11 must be enabled.
-- The Rcereal must be install properly.
+```r
+withr::with_makevars(c("PKG_CXXFLAGS"="std=c++11"),
+                     pkgbuild::compile_dll(),
+                     assignment="+=")
+```
 
-If you see the compiler reports the missing header files, please use the `Rcereal::update_version()` to update the content of cereal from github. You can manual check whether a directory named `cereal` is in the folder `system.file("include", package = "Rcereal")`.
+If the compiler reports missing header files, try `Rcereal::update_version()` to
+update the content of __cereal__ from GitHub. Check that a directory named
+`cereal` is in the folder  `system.file("include", package = "Rcereal")`.
 
-If you see lots of error during compiling, please check the version of the compiler and the content of the environment variable `PKG_CXXFLAGS`. As far as I know, cereal will fail if the gcc-4.6 is used.
 
 ## Status
 
 OS     |  Status
 -------|-------------
-Linux & os x |[![](https://travis-ci.org/wush978/Rcereal.svg?branch=master)](https://travis-ci.org/wush978/Rcereal/branches)
+Linux & os x |[![](https://travis-ci.org/wush978/Rcereal.svg?branch=master)](https://app.travis-ci.com/wush978/Rcereal/branches)
 Windows|[![Build status](https://ci.appveyor.com/api/projects/status/yjmrqa3yn70qf2q0/branch/master?svg=true)](https://ci.appveyor.com/project/wush978/rcereal/branch/master)
