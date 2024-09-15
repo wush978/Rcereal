@@ -17,12 +17,13 @@ License: BSD_2_clause + file LICENSE
 LazyData: TRUE
 SystemRequirements: C++11
 Suggests:
+    cpp11(>= 0.4.7),
     Rcpp(>= 0.10.3),
+    decor,
     git2r,
     httr,
     testthat,
     tools,
-    devtools,
     knitr,
     rmarkdown
 URL: https://github.com/wush978/Rcereal
