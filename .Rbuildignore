@@ -7,3 +7,6 @@
 
 ^inst/[^i][^n][^c][^l].*
 
+^.*\.Rproj$
+^\.Rproj\.user$
+.github/workflows/rhub.yaml
