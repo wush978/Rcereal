@@ -2,9 +2,12 @@ Package: Rcereal
 Title: "Cereal Headers for R and C++ Serialization"
 Version: 1.3.2
 Authors@R:
-    c(person("Wush", "Wu", email="wush978@gmail.com", role=c("aut", "cre")),
+    c(person("Wush", "Wu", email="wush978@gmail.com", role=c("aut", "cre"),
+             comment=c(ORCID="0000-0001-5180-0567")),
       person("Randolph", "Voorhies", role=c("ctb")),
-      person("Shane", "Grant", role=c('ctb')))
+      person("Shane", "Grant", role=c("ctb")),
+      person("Stephen", "Wade", role=c("ctb"),
+             comment=c(ORCID="0000-0002-2573-9683")))
 Description: To facilitate using 'cereal' with R via 'cpp11' or 'Rcpp'. 'cereal'
     is a header-only C++11 serialization library. 'cereal' takes arbitrary data
     types and reversibly turns them into different representations, such as
