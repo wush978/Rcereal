@@ -21,6 +21,4 @@ warnings_are_errors: true
 
 env:
   global:
-    - RCEREAL_TEST_GITHUB=TRUE
     - RCEREAL_TEST_UPDATE=TRUE
-    - RCEREAL_TEST_MYCLASS=TRUE

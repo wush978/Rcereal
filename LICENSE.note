@@ -1,0 +1,8 @@
+License
+=======
+
+The Rcereal package as a whole is distributed under the BSD-2-Clause license.
+The package includes the cereal library which has the BSD-3-Clause license. A
+full copy of the license agreement used by cereal is included in the source
+bundle for Rcereal in the folder `inst/include/cereal`.
+
