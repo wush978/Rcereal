@@ -153,13 +153,15 @@ void deserialize_myclass(RawVector src) {
 }
 ```
 
-Then in R, provided C++ is enabled by default:
+Then in R (provided C++11 is enabled):
 
 ```r
 Rcpp::sourceCpp("path/to/example.cpp")
 raw_vector <- serialize_myclass(1, 2, 4)
 deserialize_myclass(raw_vector)
 ```
+
+[rcpp_cran]: https://cran.r-project.org/package=Rcpp
 
 
 ## Troubleshooting
