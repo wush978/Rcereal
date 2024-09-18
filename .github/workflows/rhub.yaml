@@ -82,7 +82,7 @@ jobs:
         with:
           submodules: 'true'
       - name: Install libgit2 on macOS
-        if: ${{ matrix.config.name == 'macos' }}
+        if: ${{ matrix.config.name == 'macos' || matrix.config.name == 'macos-arm64' }}
       # as of 09/2024: use 1.7 until newer git2r is released; see
       # https://github.com/ropensci/git2r/issues/467 
         run: |
