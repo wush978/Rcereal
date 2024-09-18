@@ -81,14 +81,6 @@ jobs:
       - uses: r-hub/actions/checkout@v1
         with:
           submodules: 'true'
-      - name: Install libgit2 on macOS
-        if: ${{ matrix.config.name == 'macos' || matrix.config.name == 'macos-arm64' }}
-      # as of 09/2024: use 1.7 until newer git2r is released; see
-      # https://github.com/ropensci/git2r/issues/467 
-        run: |
-          brew install libgit2@1.7
-          brew link libgit2@1.7
-        shell: bash
       - uses: r-hub/actions/setup-r@v1
         with:
           job-config: ${{ matrix.config.job-config }}
@@ -97,6 +89,26 @@ jobs:
         with:
           token: ${{ secrets.RHUB_TOKEN }}
           job-config: ${{ matrix.config.job-config }}
+      - name: Install libgit2 on macos
+        if: ${{ matrix.config.name == 'macos' }}
+      # as of 09/2024: use 1.7 until newer git2r is released; see
+      # https://github.com/ropensci/git2r/issues/467 
+        run: |
+          brew install libgit2@1.7
+          brew link libgit2@1.7
+        shell: bash
+      - name: Install libgit2 on macos-arm64
+        if: ${{ matrix.config.name == 'macos-arm64' }}
+      # as of 09/2024: use 1.7 until newer git2r is released; see
+      # https://github.com/ropensci/git2r/issues/467 
+      # configure pkg-config
+        run: |
+          set -x
+          brew install libgit2@1.7
+          brew link libgit2@1.7
+          export PKG_CONFIG_PATH="/opt/homebrew/opt/libgit2@1.7/lib/pkgconfig:${PKG_CONFIG_PATH}"
+          Rscript -e "install.packages('git2r')"
+        shell: bash
       - uses: r-hub/actions/setup-deps@v1
         with:
           job-config: ${{ matrix.config.job-config }}
