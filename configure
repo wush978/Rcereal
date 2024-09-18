@@ -1,4 +1,14 @@
 #! /bin/sh
 
 # remove the pragma that suppresses diagnostics
-sed -i 's|^#pragma|// #pragma|' inst/include/cereal/external/base64.hpp
+# OS-specific sed command, see: https://stackoverflow.com/a/4247319/7050789
+OS="`uname`"
+case $OS in
+  'Darwin') 
+    sed -i '' -e 's|^#pragma|// #pragma|' 'inst/include/cereal/external/base64.hpp'
+    ;;
+  *)
+    sed -i -e 's|^#pragma|// #pragma|' 'inst/include/cereal/external/base64.hpp'
+    ;;
+esac
+
