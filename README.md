@@ -67,7 +67,6 @@ to serialize and deserialize a user-defined `struct` using raw vectors:
 
 #include <cereal/archives/binary.hpp>
 
-[[cpp11::linking_to("Rcereal")]]
 struct MyClass
 {
     int x, y, z;
@@ -79,6 +78,7 @@ struct MyClass
     }
 };
 
+[[cpp11::linking_to("Rcereal")]]
 [[cpp11::register]]
 cpp11::raws serialize_myclass(int x = 1, int y = 2, int z = 3) {
     MyClass my_instance { x, y, z };
@@ -179,6 +179,8 @@ Rcpp::sourceCpp("path/to/example.cpp")
 raw_vector <- serialize_myclass(1, 2, 4)
 deserialize_myclass(raw_vector)
 ```
+
+[rcpp_cran]: https://cran.r-project.org/package=Rcpp
 
 
 ## Troubleshooting
