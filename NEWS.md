@@ -1,6 +1,6 @@
 # Changelog - Rcereal
 
-## [1.3.2](https://github.com/wush978/Rcereal/release/tag/1.3.2) - 2024-08-24
+## [1.3.2](https://github.com/wush978/Rcereal/releases/tag/1.3.2) - 2024-09-20
 
 Bump cereal version to 1.3.2 and introduce `cpp11` usage.
 
