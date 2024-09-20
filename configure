@@ -1,14 +1,17 @@
 #! /bin/sh
 
 # remove the pragma that suppresses diagnostics
+# correct the link that triggers CRAN's invalid URLs check
 # OS-specific sed command, see: https://stackoverflow.com/a/4247319/7050789
 OS="`uname`"
 case $OS in
   'Darwin') 
     sed -i '' -e 's|^#pragma|// #pragma|' 'inst/include/cereal/external/base64.hpp'
+    sed -i '' -e 's|http://www.doxygen.org/index.html|https://www.doxygen.nl/index.html|' 'inst/doc/footer.html'
     ;;
   *)
     sed -i -e 's|^#pragma|// #pragma|' 'inst/include/cereal/external/base64.hpp'
+    sed -i -e 's|http://www.doxygen.org/index.html|https://www.doxygen.nl/index.html|' 'inst/doc/footer.html'
     ;;
 esac
 
