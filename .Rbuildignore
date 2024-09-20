@@ -4,7 +4,11 @@ inst/.gitignore
 inst/.travis.yml
 inst/CMakeLists.txt
 inst/Config.cmake.in
-inst/doc
+inst/doc/footer.html
+inst/doc/CMakeLists.txt
+inst/doc/DoxygenLayout.xml
+inst/doc/doxygen.in
+inst/doc/mainpage.dox
 inst/README.md
 inst/sandbox
 inst/scripts
@@ -15,7 +19,6 @@ inst/appveyor.yml
 .travis.yml
 appveyor.yml
 LICENSE.md
-src/.gitexist
 ^.*\.Rproj$
 ^\.Rproj\.user$
 .github/workflows/rhub.yaml
