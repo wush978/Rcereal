@@ -2,5 +2,3 @@
 
 # remove the pragma that suppresses diagnostics
 sed -i 's|^#pragma|// #pragma|' inst/include/cereal/external/base64.hpp
-# correct the link that triggers CRAN's invalid URLs check
-sed -i 's|http://www.doxygen.org/index.html|https://www.doxygen.nl/index.html|' inst/include/cereal/external/base64.hpp
